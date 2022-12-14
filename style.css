@@ -1,0 +1,94 @@
+
+*{/*removendo margin e padding de todos os elementos para que as caixas fiquem mais grudadas*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;/*o tamanho da caixa(box-sizing) será a partir da borda da caixa(border-box)*/
+
+}
+
+/*root=raiz aqui estou criando variáveis para serem utilizadas  mais na frente.*/
+:root {
+    --bg-color: #000008;
+
+    --base-color: 194;
+    --bg-primary-light: hsla(var(--base-color), 100%, 63%, 0.13);
+    --primary-color:hsl(var(--base-color), 100%, 63%);  
+
+    --text-color: #ffffff;
+
+    font-size: 62.5%; /*a fonte base do meu site seja de 10px que equivale a 1rem */
+}
+
+/* estilizando o meu body=corpo que é todo minha página preta mais o meu main=principal e footer. O main é tudo o que está contido dentro da caixa branca tracejada*/
+body { 
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;  
+
+    display: grid; /*por padrão o html coloca tudo em coluna um abaixo do outro e o display:grid faz essa mesma função só que preciso utilizar o display:grid para poder estilizar o justify nos elementos contido no body que nesse caso será o main*/
+    min-height: 100vh; /* Controla o tamanho da viewport=janela de exibição. Ele pode ser definido para um número específico de pixels como height=400 ou para o valor especial min-height, que é 100vh, ou 100% da altura da viewport=janela de exibição. Mínimo: 1. Máximo: 10000. Valores negativos: ignorados. 
+    Então estou definindo que a altura mínima é de 100vh ou 100% da altura da minha janela de exibição sendo assim a altura da caixa do bory pegará todo o meu navegador.  */    
+}
+
+
+
+/*inserindo bordas nas caixas main e footer para melhor compreensão
+main {background-color: rgb(51, 223, 165);}
+footer {background-color: bisque;}*/
+
+/*estilizando todos os botões*/
+button { 
+    background-color: transparent; /*removendo a cor do fundo dos botões*/
+    /*border: none; removendo as bordas dos botões*/
+    cursor: pointer; /*ao passar o mouse em cima de cada botão o ponteiro se transforma na mão*/ 
+    border: none;    
+}
+
+/*hide=ocultar. Aqui ireiocultar manulamente alguns botões porém, precisamos codar no html e no scrip.js iremos criar script para automatizar */
+.hide {
+    display: none; /*aqui estou ocultando manualmente os botões de pause,stop e sound-off mas,para isso eu tenho que codar no index.html inserindo hide no final da class Ex: <button class="pause hide">, <button class="stop hide"> e <button class="sound-off hide">. No script.js irei criar um script para esses botões aparecerem e desaparecerem automaticamente*/
+}
+
+/*estilizando os botões play, pause e sound-on ao mesmo tempo*/
+.play svg path, .pause svg path, .sound-on svg path {
+    fill: var(--primary-color);
+}
+
+/*estilizando todos os botões no formato svg.
+A função CSS clamp() prende um valor intermediário dentro de um intervalo de valores entre um limite mínimo definido e um limite máximo. A função aceita três parâmetros: um valor mínimo, um valor preferencial e um valor máximo permitido.*/
+button svg {
+    width: clamp(3.2rem, 2rem + 12vw, 6.4rem );
+}
+
+main {
+    justify-self: center; /*ele centraliza a caixa do main ao centro do body, a largura da caixa do main fica justificada, grudada aos seu elementos e a altura da caixa main fica esticada até o limite da caixa do footer*/
+    align-self: end; /*o align-self vai dimensionar tanto na horizontal quanto na vertical a caixa do main deixando o tamanho da caixa justificada ao seus elementos e o end vai deixar toda a caixa do main na parte debaixo grudada à caixa do footer */    
+}
+
+
+/*estilizando a caixa contendo as caixas do minutes, dois pontos e seconds*/
+#timer { 
+    font-size: clamp(4rem, 4rem + 10vw, 8.8rem);
+    display: flex; /*vair remover todo espaço na horizontal fazendo com que as caixas(minutes, : dois pontos,seconds) fiquem juntinhas/grudadas horizontalmente à esquerda da caixa maior contendo todas as caixas(minutes, : dois pontos,seconds). Esse horizontalmente à esquerda da caixa maior também vai ficar à esquerda da janela principla que é o body*/  
+    margin-bottom: 1.6rem;/*distância entre as caixas do timer para caixa do controls*/      
+}
+
+/*estilizando a caixa contendo as caixas do play e do set */
+#controls { 
+    background-color: var(--bg-primary-light);
+    display: flex; /*grudar uma caixa na outro horizontamente sem espaços entre elas*/
+    align-items: center; /*alinhar ao centro de suas caixas os botões play e set*/
+    justify-content: center; /*justificar-conteúdo ao centro significa que iremos colocar a caixa do botão play e a caixa do botão set no centro de sua caixa principal que está na cor verde*/
+    border-radius: 9999px; /*raio da borda para ficar no formato arredondado*/
+    gap: 3.2rem; /*espaçamento entre as duas caixas paly e set*/
+    
+    width: clamp(10rem, 10rem + 30vw, 22.8rem); /*A função CSS clamp() prende um valor intermediário dentro de um intervalo de valores entre um limite mínimo definido(coloquei 10 rem), um limite ideal de minha preferência(coloquei 10rem + 30vw) e um limite máximo(22.8rem). A função aceita três parâmetros: um valor mínimo, um valor preferencial e um valor máximo permitido. Aqui foi estilizado para o width*/
+    height: clamp(8rem, 5rem + 10vw, 10.8rem);
+}
+
+footer {
+    justify-self: end; /*ele coloca o elemento do footer no final do eixo 'x' ou na horizontal, a largura da caixa do footer fica justificada ao seu elemento, grudada ao seu elemento e a altura da caixa footer fica esticada até o limite do body que é da página*/
+    align-self: end;/*o align-self vai dimensionar tanto na horizontal quanto na vertical a caixa do footer deixando do tamanho exato do seu elemento e o end vai deixar toda a caixa do footer na parte inferior grudada à caixa do body que é a nossa página inteira */  
+
+    padding: 0 4rem 3.2rem 0; /*espçamento do elemnto para sua margem top, hight, bottom e left*/
+}
